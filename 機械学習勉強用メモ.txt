@@ -1,0 +1,6 @@
+機械学習勉強用
+
+●OpenML
+データセットとタスクがいっぱい。
+暇があったらここを除いて何かしら挑戦してみるといいかも
+https://www.openml.org/search?type=data
