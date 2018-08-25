@@ -1,0 +1,27 @@
+# 1.学習した重みの保存
+
+# 1-1.modelの形をjsonで保存
+model_json_str = model.to_json()
+open('mnist_mlp_model.json', 'w').write(model_json_str)
+
+# 1-2.重みを保存
+model.save_weights('mnist_mlp_weights.h5');
+
+# 2.学習した重みをLOAD
+from keras.models import model_from_json
+
+# 2-1.モデルを読み込む
+model = model_from_json(open('mnist_mlp_model.json').read())
+
+# 2-2.学習結果を読み込む
+model.load_weights('mnist_mlp_weights.h5')
+
+# 2-3.中身を見てみよう
+model.summary()
+
+# 2-4.実際に予測して見るならこんな感じ
+model.compile(loss='categorical_crossentropy',
+              optimizer='rmsprop',
+              metrics=['accuracy'])
+
+score = model.evaluate(X_test, Y_test, verbose=0)
