@@ -2,26 +2,32 @@
 物体検出の推論用エンドポイントが立ち上がっている状態で、画像を推論するときのスクリプト。
 下記はやっていることの流れ。
 
-1.パラメータの指定
-2.結果描写用の関数を作成
-3.エンドポイントから「予測結果」を取得
-4.表示
+1.必要なモジュールのインポート
+2.パラメータの指定
+3.結果描写用の関数を作成
+4.エンドポイントから「予測結果」を取得
+5.表示
 '''
 
 
+################################################
+# 1.必要なモジュールのインポート                    #
+################################################
 
 import json
 import numpy as np
 import boto3
+import PIL.Image as pil_img
+
 runtime = boto3.Session(region_name='ap-northeast-1').client(service_name='sagemaker-runtime')
 
 
 ################################################
-# 1.パラメータを指定してください。                  #
+# 2.パラメータの指定                              #
 # 分類クラス、エンドポイント、対象画像を指定          #
 ################################################
 
-# 1-1.分類クラスを指定
+# 2-1.分類クラスを指定
 object_categories = ['person', 'bicycle', 'car',  'motorbike', 'aeroplane', 'bus', 'train', 'truck', 'boat', 
                      'traffic light', 'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog',
                      'horse', 'sheep', 'cow', 'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag',
@@ -34,17 +40,16 @@ object_categories = ['person', 'bicycle', 'car',  'motorbike', 'aeroplane', 'bus
                      'toothbrush']
 
 
-# 1-2.推論用エンドポイントを指定
+# 2-2.推論用エンドポイントを指定
 endpoint_name = 'object-detection-2018-09-17-09-52-12-041'
 
-# 1-3.対象画像を指定
+# 2-3.対象画像を指定
 img = open('/Users/yoshimura.keta/Downloads/000000002587.jpg', 'rb').read()
 
 
-
 ################################################
-# 2.推論結果を綺麗にする関数を作成                  #
-# 「閾値でのフィルタリング」、 「クラスの重複を削除」  #
+# 3.推論結果を綺麗にする関数を作成                  #
+# 閾値でのフィルタリング、 クラスの重複を削除         #
 ################################################
 
 def listup_obj(result, thresh):
@@ -67,7 +72,7 @@ def listup_obj(result, thresh):
 
 
 ################################################
-# 3.推論エンドポイントから予測結果を取得             #
+# 4.推論エンドポイントから予測結果を取得             #
 ################################################
 
 # Call your model for predicting which object appears in this image.
@@ -82,7 +87,7 @@ result = json.loads(result)
 
 
 ################################################
-# 4.実行                                        #
+# 5.実行                                        #
 ################################################
 list_object = listup_obj(result, thresh = 0.7)
 print(list_object)
