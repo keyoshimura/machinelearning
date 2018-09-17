@@ -1,0 +1,1 @@
+{"file": "0001.jpg", "image_size": [{"width": 386, "height": 398, "depth": 3}], "annotations": [{"class_id": 1, "top": 76, "left": 95, "width": 173, "height": 306}], "categories": [{"class_id": 0, "name": "cuisine"}, {"class_id": 1, "name": "man"}, {"class_id": 2, "name": "glasses"}]}

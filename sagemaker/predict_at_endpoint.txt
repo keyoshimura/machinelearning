@@ -1,0 +1,18 @@
+AWS cliで推論する。
+
+
+＃cliについての公式ドキュメント
+https://docs.aws.amazon.com/cli/latest/reference/sagemaker/index.html
+https://docs.aws.amazon.com/cli/latest/reference/sagemaker-runtime/invoke-endpoint.html
+
+
+$稼働中のエンドポイント一覧を確認
+aws sagemaker list-endpoints --region ap-northeast-1
+
+
+$エンドポイント、推論対象ファイル、アウトプット出力先を指定して推論を実行
+aws sagemaker-runtime --region ap-northeast-1 invoke-endpoint \
+  --endpoint-name object-detection-2018-09-17-09-52-12-041 \
+  --body fileb:///Users/yoshimura.keta/Downloads/test.jpg \
+  --content-type "image/jpeg"  \
+  /Users/yoshimura.keta/Desktop/output_20180917.json
