@@ -54,7 +54,7 @@ img = open('/Users/yoshimura.keta/Downloads/000000002587.jpg', 'rb').read()
 
 def listup_obj(result, thresh):
     '''
-    result_list:推論エンドポイントから取得した結果
+    result:推論エンドポイントから取得した結果
     thresh:閾値。
     '''
     list_obj = []
