@@ -19,7 +19,13 @@ import numpy as np
 import boto3
 import PIL.Image as pil_img
 
+
+# 「エンドポイントを用意しているAWSアカウント」、「リージョン」、「configのdefaultにしているアカウント」に注意する
 runtime = boto3.Session(region_name='ap-northeast-1').client(service_name='sagemaker-runtime')
+
+# 「config」で「default」に指定しているアカウントで、「東京」にエンドポイントを作成した場合はこれ。
+# 「AssumeRole」を使った場合についてはまだ試していないが、おそらく下記のエントリーを参考にすれば大丈夫かと
+# https://dev.classmethod.jp/cloud/aws/aws-sdk-for-python-boto3-assumerole/
 
 
 ################################################
