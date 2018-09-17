@@ -17,7 +17,6 @@
 import json
 import numpy as np
 import boto3
-import PIL.Image as pil_img
 
 
 # 「エンドポイントを用意しているAWSアカウント」、「リージョン」、「configのdefaultにしているアカウント」に注意する
